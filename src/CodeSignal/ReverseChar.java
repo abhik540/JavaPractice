@@ -1,14 +1,42 @@
 package CodeSignal;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 public class ReverseChar {
     public static void main(String[] args) {
 
-        //System.out.println(solutionFinal("foo(bar)baz(blim) "));
+        System.out.println(solution1("foo(bar)baz(blim) "));
         // System.out.println(solutionFinal("foo(bar(baz))blim"));
-        System.out.println(reverseParentheses("(bar)"));
+        //System.out.println(reverseParentheses("(bar)"));
     }
+
+    static String solution1(String inputString) {
+
+
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < inputString.length(); i++) {
+            if (inputString.charAt(i) == '(') {
+                stack.push(i);
+            }
+            if (inputString.charAt(i) == ')') {
+                StringBuilder builder = new StringBuilder();
+                builder.append(inputString, stack.peek() + 1, i);
+                String out = builder.reverse().toString();
+                char[] chars = inputString.toCharArray();
+                for (int index = stack.peek() + 1; index < i; index++) {
+                    chars[index] = out.charAt(index - (stack.peek() + 1));
+                }
+                inputString = String.copyValueOf(chars);
+                stack.pop();
+            }
+        }
+
+        return inputString.replace("(", "").replace(")", "");
+    }
+
+    ;
+
 
     static String solutionFinal(String inputString) {
 
