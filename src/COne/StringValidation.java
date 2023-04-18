@@ -12,6 +12,7 @@ import java.util.Stack;
 // er4?asdf?asdf?6???asdf4 -> true
 public class StringValidation {
 
+
     static boolean isValid(String input) {
 
         String inputString = "";
